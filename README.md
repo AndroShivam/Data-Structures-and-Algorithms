@@ -1,4 +1,4 @@
-### Data Structures and Algorithms
+# Data Structures and Algorithms
 ## Table Of Content
 
 * Arrays
