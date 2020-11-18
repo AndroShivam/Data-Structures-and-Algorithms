@@ -2,6 +2,10 @@
 ## Table Of Content
 
 * Arrays
+* Binary Search
 * LinkedList
-* Stack
+* Queue
 * Sorting
+* Stack
+* String
+* Tree
