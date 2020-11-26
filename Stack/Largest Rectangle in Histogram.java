@@ -44,7 +44,10 @@ class Solution {
 	
 	/*
 	This is a Stack Problem, You can calculate nextSmallerToTheLeft and nextSmallerToTheRight using this method too but this requires extra memory
-	  private static List<Integer> nextSmallerToTheLeft(int[] hist, int n) {
+	
+	
+	
+    private static List<Integer> nextSmallerToTheLeft(int[] hist, int n) {
 
         Stack<Integer> stack = new Stack<>();
         List<Integer> list = new ArrayList<>();
