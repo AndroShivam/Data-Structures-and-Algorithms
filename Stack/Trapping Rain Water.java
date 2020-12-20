@@ -9,7 +9,7 @@ class Solution {
         int n = height.length;
         int left = 0;
         int right = n - 1;
-        int leftMaxHeight = height[0];AC
+        int leftMaxHeight = height[0];
         int rightMaxHeight = height[n - 1];
         int totalArea = 0;
         
