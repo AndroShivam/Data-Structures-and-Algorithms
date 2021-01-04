@@ -1,3 +1,5 @@
+// Brute Force
+// Time Complexity : O(N^3)
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         
@@ -28,9 +30,9 @@ class Solution {
 
 
 
-
-// Time Complexity - Time complexity : O(2n) = O(n)O(2n)=O(n). In the worst case each character will be visited twice by ii and jj.
 // Sliding Window
+// Time Complexity : O(2n) = O(n) In the worst case each character will be visited twice by ii and jj.
+
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
         int n = s.length();
@@ -52,7 +54,7 @@ public class Solution {
 
 
 // Above Approach further more optimized
-// Time complexity : O(n)O(n). Index jj will iterate nn times.
+// Time complexity : O(n) Index j will iterate n times.
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if(s.length() == 0)
