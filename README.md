@@ -9,3 +9,6 @@
 * Stack
 * String
 * Tree
+* Heap
+* Dynamic Programming
+* Maths
