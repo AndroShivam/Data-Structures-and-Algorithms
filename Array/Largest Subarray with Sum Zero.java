@@ -20,7 +20,7 @@ class LearningDS {
     }
 }
 
-// Time Complexity - O(NLogN)
+// Time Complexity - O(N)
 // Space Complexity - O(N)
 
 import java.util.*;
