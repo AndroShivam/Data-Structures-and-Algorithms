@@ -9,89 +9,67 @@ class Node {
 }
 
 class LinkedList {
+    Node head, temp;
 
-    Node head;
-    Node temp;
-
-    LinkedList() {
+    public LinkedList() {
         head = null;
         temp = null;
     }
 
-    void insert(int data) {
+    void add(int data) {
         Node newNode = new Node(data);
-        if (head == null) {
-            temp = head = newNode;
-        } else {
+        if (head == null)
+            head = temp = newNode;
+        else {
             temp.next = newNode;
-            temp = temp.next;
+            temp = newNode;
         }
     }
 
+    void removeDuplicates() {
+        Node current = head;
 
-    void deleteDuplicates() {
+        while (current != null) {
+            Node runner = current;
 
-        // we will use two pointers
-        // ptr1 will point to one node at a time and ptr2 will traverse whole list and checks if any duplicate exists
-        // if found we change links
-
-        Node ptr1 = head;
-        Node ptr2;
-
-        while (ptr1 != null && ptr1.next != null) {
-            ptr2 = ptr1;
-            while (ptr2.next != null) {
-                if (ptr1.data == ptr2.next.data) { // we didn't use ptr2.data because ptr1.data points to the same Node and we want any duplicate
-                    ptr2.next = ptr2.next.next;
+            while (runner.next != null) {
+                if (current.data == runner.next.data) {
+                    runner.next = runner.next.next;
                 } else {
-                    ptr2 = ptr2.next;
+                    runner = runner.next;
                 }
             }
-            ptr1 = ptr1.next;
+            current = current.next;
         }
     }
 
-    void printLinkedList() {
-        Node currentNode = head;
-
-        while (currentNode != null) {
-            System.out.print(currentNode.data + " ");
-            currentNode = currentNode.next;
+    void print() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
         }
+        System.out.println();
     }
-
-
 }
 
 class LearningDS {
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        LinkedList list = new LinkedList();
 
-        ll.insert(39);
-        ll.insert(12);
-        ll.insert(45);
-        ll.insert(2);
-        ll.insert(2);
-        ll.insert(12);
-        ll.insert(39);
-        ll.insert(5);
-        ll.insert(14);
-        ll.insert(5);
+        list.add(10);
+        list.add(20);
+        list.add(10);
+        list.add(30);
+        list.add(30);
+        list.add(40);
+        list.add(50);
+        list.add(20);
 
-
-        System.out.println("Before removing duplicates : ");
-        ll.printLinkedList();
-
-        System.out.println("");
-        ll.deleteDuplicates();
-
-        System.out.println("After removing duplicates : ");
-        ll.printLinkedList();
-
-//        Output : -
-//        Before removing duplicates :
-//        39 12 45 2 2 12 39 5 14 5
-//        After removing duplicates :
-//        39 12 45 2 5 14
+        System.out.println("Before Removing Duplicates");
+        list.print();
+        System.out.println("After Removing Duplicates");
+        list.removeDuplicates();
+        list.print();
     }
 }
