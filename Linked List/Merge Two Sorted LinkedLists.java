@@ -1,46 +1,70 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+// Time Complexity - O(N + M)
+// Space Complexity - O(N + M)
+
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+        
+        ListNode list1 = l1;
+        ListNode list2 = l2;
+        
+        while(list1 != null && list2 != null){
+            if(list1.val <= list2.val){
+                current.next = list1;
+                list1 = list1.next;
+            }else{
+                current.next = list2;
+                list2 = list2.next;
+            }
+            current = current.next;
+        }
+        
+        if(list1 == null)
+            current.next = list2;
+        else
+            current.next = list1;
+        
+        
+        return dummy.next;
+        
+    }
+}
+
+// Time Complexity - O(N + M)
+// Space Complexity - O(1)
+
 class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         
         if(l1 == null) return l2;
         if(l2 == null) return l1;
         
-        ListNode result = null;
-        
+        // make sure l1 is the smaller list
         if(l1.val > l2.val){
-            result = l2;
-            l2 = l2.next;
-        }else{
-            result = l1;
-            l1 = l1.next;
+            ListNode temp = l1;
+            l1 = l2;
+            l2 = temp;
         }
         
-        ListNode currentNode = result;
+        ListNode result = l1;
         
         while(l1 != null && l2 != null){
-            if(l1.val > l2.val){
-                currentNode.next = l2;
-                l2 = l2.next;
-            }else{
-                currentNode.next = l1;
+            ListNode current = null;
+            while(l1 != null && l1.val <= l2.val){
+                current = l1;
                 l1 = l1.next;
             }
             
-            currentNode = currentNode.next;
+            current.next = l2;
+            
+            ListNode temp = l1; // swap
+            l1 = l2;
+            l2 = temp;
         }
         
-        
-        currentNode.next = (l1 == null) ? l2 : l1;
-        
         return result;
+        
     }
 }
