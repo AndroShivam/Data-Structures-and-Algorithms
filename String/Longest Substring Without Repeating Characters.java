@@ -54,7 +54,7 @@ class Solution {
 }
 
 // Sliding Window
-// Time Complexity : O(2n) = O(n) In the worst case each character will be visited twice by ii and jj.
+// Time Complexity : O(2n) = O(N) In the worst case each character will be visited twice by ii and jj.
 // Space Complexity : O(N)
 
 public class Solution {
@@ -78,8 +78,8 @@ public class Solution {
 
 
 // Above Approach further more optimized
-// Time Complexity : O(n) Index j will iterate n times.
-// Space Complexity : O(1)
+// Time Complexity : O(N) Index j will iterate n times.
+// Space Complexity : O(N)
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
