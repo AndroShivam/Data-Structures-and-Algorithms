@@ -1,5 +1,7 @@
 // Brute Force
 // Time Complexity : O(N^3)
+// Space Complexity : O(N)
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         
@@ -28,10 +30,32 @@ class Solution {
     }
 }
 
+// Boolean Visited Array
+// Time Complexity : O(N^2)
+// Space Complexity : O(1)
 
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int max = 0;
+        for(int i=0; i<s.length(); i++){
+            boolean[] visited = new boolean[128];
+            for(int j=i; j<s.length(); j++){
+                if(visited[s.charAt(j)])
+                    break;
+                else{
+                    max = Math.max(max, j - i + 1);
+                    visited[s.charAt(j)] = true;
+                }
+            }
+        }
+        
+        return max;
+    }
+}
 
 // Sliding Window
 // Time Complexity : O(2n) = O(n) In the worst case each character will be visited twice by ii and jj.
+// Space Complexity : O(N)
 
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -54,7 +78,9 @@ public class Solution {
 
 
 // Above Approach further more optimized
-// Time complexity : O(n) Index j will iterate n times.
+// Time Complexity : O(n) Index j will iterate n times.
+// Space Complexity : O(1)
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if(s.length() == 0)
