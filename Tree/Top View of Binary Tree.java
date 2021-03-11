@@ -32,7 +32,7 @@ class View
         }
         
         Queue<QueueObj> queue = new LinkedList<>();
-        Map<Integer, Node> map = new TreeMap<>();
+        Map<Integer, Node> map = new TreeMap<>();  // TreeMap stores key value pair sorted on key value 
         
         queue.offer(new QueueObj(root, 0));
         
