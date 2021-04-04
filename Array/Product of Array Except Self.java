@@ -1,34 +1,81 @@
+// Brute Force
+
+// Time Complexity - O(N^2)
+// Space Complexity - O(1)
+
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
-        int[] res = new int[n];
+        int[] result = new int[n];
         
-        res[0] = 1;
-        for(int i=1; i<nums.length; i++){
-            res[i] = res[i - 1] * nums[i - 1];
+        for(int i=0; i<n; i++){
+            int currentProduct = 1;
+            for(int j=0; j<n; j++){
+                if(i != j){
+                    currentProduct *= nums[j];
+                }
+            }
+            result[i] = currentProduct;
         }
         
-        int right = 1;
-        
-        for(int i = n - 1; i>=0; i--){
-            res[i] = res[i] * right;
-            right = right * nums[i];
-        }
-        
-        return res;
+        return result;
     }
 }
 
-// Given numbers [2, 3, 4, 5], regarding the third number 4, the product of array except 4 is 2*3*5 which consists of two parts: left 2*3 and right 5. The product is left*right. We can get lefts and rights:
+// Using left and right arrays (product at index i is everything on the left and right of i)
 
-// Numbers:     2    3    4     5
-// Lefts:            2  2*3 2*3*4
-// Rights:  3*4*5  4*5    5      
-// Let’s fill the empty with 1:
+// Time Complexity - O(N)
+// Space Complexity - O(N)
 
-// Numbers:     2    3    4     5
-// Lefts:       1    2  2*3 2*3*4
-// Rights:  3*4*5  4*5    5     1
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        
+        int n = nums.length;
+        
+        int[] result = new int[n];
+        int[] left = new int[n];
+        int[] right = new int[n];
+        
+        left[0] = 1; // left of first number is nothing
+        
+        for(int i = 1; i<n; i++)
+            left[i] = left[i - 1] * nums[i - 1];
+        
+        right[n - 1] = 1; // right of last number is nothing
+        
+        for(int i = n - 2; i>=0; i--)
+            right[i] = right[i + 1] * nums[i + 1];
+        
+        for(int i=0; i<n; i++)
+            result[i] = left[i] * right[i];
+        
+        return result;
+    }
+}
 
-// Explanation by kingsizebeast on leetcode
-// discussion link - https://leetcode.com/problems/product-of-array-except-self/discuss/65622/Simple-Java-solution-in-O(n)-without-extra-space
+// Store left array in result and multiply right on the way to it
+
+// Time Complexity - O(N)
+// Space Complexity - O(1)
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        
+        int n = nums.length;
+        int[] result = new int[n];
+        
+        result[0] = 1;
+        
+        for(int i=1; i<n; i++) // treat result array as left array
+            result[i] = result[i - 1] * nums[i - 1];
+        
+        int right = 1;
+        
+        for(int i = n - 1; i >= 0; i--){ // multiply right 
+            result[i] *= right;
+            right *= nums[i];
+        }
+        
+        return result;
+    }
+}
