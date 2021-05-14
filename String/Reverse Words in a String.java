@@ -1,3 +1,37 @@
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+
+class Solution {
+    public String reverseWords(String s) {
+        
+        int i = s.length() - 1;
+        StringBuilder result = new StringBuilder();
+        
+        while(i >= 0){
+            while(i >= 0 && s.charAt(i) == ' ')
+                i--;
+            
+            int j = i;
+            
+            if(i < 0) break;
+
+            while(i >= 0 && s.charAt(i) != ' ')
+                i--;
+            
+            if(result.length() == 0){
+                result.append(s.substring(i + 1, j + 1));
+            }else{
+                result.append(" ").append(s.substring(i + 1, j + 1));
+            }
+        }
+        
+        return result.toString();
+    }
+}
+
+// Time Complexity - O(N)
+// Space Complexity - O(1)
+
 class Solution {
     public String reverseWords(String s) {
         
