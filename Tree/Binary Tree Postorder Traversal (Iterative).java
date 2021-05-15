@@ -1,66 +1,57 @@
-// Using Two Stacks
+// Reversing Preorder Traversal (not recommended)
+// Time Complexity - O(N)
+// Space Complexity - O(N)
 
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        Stack<TreeNode> stack1 = new Stack<>();
-        Stack<TreeNode> stack2 = new Stack<>();
+        if(root == null) return new ArrayList<>();
         List<Integer> result = new ArrayList<>();
-        if(root == null) return result;
+        Stack<TreeNode> stack  = new Stack<>();
+        stack.push(root);
         
-        stack1.push(root);
-        
-        while(!stack1.isEmpty()){
-            TreeNode current = stack1.pop();
-            stack2.push(current);
+        while(!stack.isEmpty()){
+            TreeNode current = stack.pop();
+            result.add(0, current.val);
             
-            if(current.left != null) stack1.push(current.left);
-            if(current.right != null) stack1.push(current.right);
+            if(current.left != null) stack.push(current.left);
+            if(current.right != null) stack.push(current.right);
         }
-        
-        while(!stack2.isEmpty())
-            result.add(stack2.pop().val);
         
         return result;
     }
 }
 
-// Using One Stack
+// Without Reversing Preorder Traversal
+// Time Complexity - O(N)
+// Space Complexity - O(N)
 
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
         List<Integer> result = new ArrayList<>();
-        if(root == null) return result;
+        Stack<TreeNode> stack = new Stack<>();
         
-        TreeNode current = root;
-        
-        while(current != null || !stack.isEmpty()){
-            while(!isLeaf(current)){
-                stack.push(current);
-                current = current.left;
+        while(root != null || !stack.isEmpty()){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
             }
             
-            if(current != null)
-                result.add(current.val);
+            root = stack.peek();
             
-            // if current element is the right child of stack top then,
-            // we know that have traversed left and right now we need to pop root
-            while(!stack.isEmpty() && current == stack.peek().right) { 
-                current = stack.pop();
-                result.add(current.val);
+            if(root.right != null){
+                root = root.right;
+            }else{
+                root = stack.pop();
+                result.add(root.val);
+                
+                while(!stack.isEmpty() && root == stack.peek().right){
+                    root = stack.pop();
+                    result.add(root.val);
+                }
+                root = null;
             }
-            
-            if(stack.isEmpty())
-                current = null;
-            else
-                current = stack.peek().right;
         }
         
         return result;
-    }
-    
-    private boolean isLeaf(TreeNode curr){
-        if(curr == null) return true;
-        return curr.left == null && curr.right == null;
     }
 }
