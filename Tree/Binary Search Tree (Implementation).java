@@ -12,7 +12,7 @@ class BSTNode {
 
 class BST {
 
-    static BSTNode root;
+    private BSTNode root;
 
     public BST() {
         root = null;
@@ -22,9 +22,9 @@ class BST {
         root = insertUtil(root, data);
     }
 
-    BSTNode insertUtil(BSTNode root, int data) {
+    private BSTNode insertUtil(BSTNode root, int data) {
         if (root == null) {
-            root = new BSTNode(data);
+            return new BSTNode(data);
         } else if (data <= root.data) {
             root.left = insertUtil(root.left, data);
         } else {
